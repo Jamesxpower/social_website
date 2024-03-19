@@ -5,10 +5,8 @@
 {% block content %}
     <h1>Log-in</h1>
     {% if form.errors %}
-        <p>
-            您的使用者名稱及密碼錯誤，請再登入一次試試
-        </p>
-    ｛% else %}
+        <p>您的使用者名稱及密碼錯誤，請再登入一次試試</p>
+    {% else %}
         <p>請使用如下的表單進行登入</p>
     {% endif %}
     <div class="login-form">
@@ -18,5 +16,8 @@
         <input type="hidden" name="next" value="{{ next }}" />
           <p><input type="submit" value="登入"></p>
       </form>
+      <p>
+          <a href="{% url 'password_reset' %}">忘記密碼</a>
+      </p>
     </div>
 {% endblock %}

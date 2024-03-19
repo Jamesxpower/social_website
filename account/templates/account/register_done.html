@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}歡迎{% endblock %}
+
+{% block content %}
+    <hr>歡迎 {{ new_user.first_name }} 加入
+    <p>
+        您的帳號已經建立成功，點選連結進行 <a href="{% url 'login' %}">登入</a>
+    </p>
+{% endblock %}
