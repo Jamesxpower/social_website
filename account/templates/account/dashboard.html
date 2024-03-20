@@ -4,5 +4,6 @@
 
 {% block content %}
     <h1>Dashboard</h1>
-    <p>歡迎光臨您的儀表版</p>
+    <p>歡迎光臨您的儀表版，您可以<a href="{% url 'edit' %}">編輯</a>您的個人資訊，
+        或是<a href="{% url 'password_change' %}">變更</a>您的密碼</p>
 {% endblock %}

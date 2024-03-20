@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}使用者資訊修改{% endblock %}
+
+{% block content %}
+    <h1>使用者資訊修改</h1>
+    <p>您可以使用之下的表格編輯您的個人資訊</p>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <p><input type="submit" value="送出"></p>
+    </form>
+{% endblock %}

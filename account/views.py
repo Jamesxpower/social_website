@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import LoginForm, UserRegistrationForm
+from django.contrib import messages
+from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
+from .models import Profile
 
 def user_login(request):
     if request.method == "POST":
@@ -39,6 +41,8 @@ def register(request):
             # Set the chosen password
             new_user.set_password(user_form.cleaned_data["password"])
             new_user.save()
+            Profile.objects.create(user=new_user)
+
             return render(request=request, template_name='account/register_done.html',
                           context={"new_user": new_user})
     else:
@@ -46,3 +50,24 @@ def register(request):
 
     return render(request=request, template_name="account/register.html",
                   context={'user_form': user_form})
+
+@login_required
+def edit(request):
+    if request.method == "POST":
+        user_form = UserEditForm(instance=request.user, data=request.POST)
+        profile_form = ProfileEditForm(
+            instance=request.user.profile,
+            data=request.POST,
+            files=request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request=request, message='您的個人資訊已更新成功')
+        else:
+            messages.error(request=request, message='您的個人資訊更新失敗')
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = ProfileEditForm(instance=request.user.profile)
+
+    return render(request=request, template_name='account/edit.html',
+                  context={'user_form': user_form, 'profile_form': profile_form})

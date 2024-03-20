@@ -20,4 +20,14 @@
           <a href="{% url 'password_reset' %}">忘記密碼</a>
       </p>
     </div>
+    <div class="social">
+        <ul>
+            <li class="facebook">
+                <a href="{% url 'social:begin' 'facebook' %}">Facebook 登入</a>
+            </li>
+            <li class="google">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">Google 登入</a>
+            </li>
+        </ul>
+    </div>
 {% endblock %}
