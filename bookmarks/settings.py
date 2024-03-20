@@ -33,7 +33,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
+#ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -146,6 +147,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-#RUNSERVERPLUS_SERVER_ADDRESS_PORT = '0.0.0.0:8000'
+RUNSERVERPLUS_SERVER_ADDRESS_PORT = '0.0.0.0:8000'
 
 
