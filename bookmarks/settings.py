@@ -22,12 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-&0ibu((hlm!)_rco9y)(c6lmhbyq@h)nniu611c=!n@zr)4emu'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '795831489059802'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'ecc97326745a5d564dc13708ec0892c3'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1056947922785-p5q3qdj1b6eck000sg7i3cqoaggvg1id.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
