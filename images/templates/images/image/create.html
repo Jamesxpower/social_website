@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}圖片書籤{% endblock %}
+
+{% block content %}
+    <h1>圖片書籤</h1>
+    <img src="{{ request.GET.url }}" class="image-preview">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="進行">
+    </form>
+{% endblock %}

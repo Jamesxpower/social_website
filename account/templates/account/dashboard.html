@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>Dashboard</h1>
-    <p>歡迎光臨您的儀表版，您可以<a href="{% url 'edit' %}">編輯</a>您的個人資訊，
+    {% with total_images_created=request.user.images_created.count %}
+        <p>歡迎光臨您的儀表版，您有標誌 {{ total_images_created }} image{{ total_images_created|pluralize }}</p>
+    {% endwith %}
+    <p>將如下的按鈕拖放至您瀏覽器的功能表上，就能從其它網站去標誌它　—＞　
+        <a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">標誌</a></p>
+    <p>您可以<a href="{% url 'edit' %}">編輯</a>您的個人資訊，
         或是<a href="{% url 'password_change' %}">變更</a>您的密碼</p>
 {% endblock %}
