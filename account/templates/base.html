@@ -24,10 +24,10 @@
                     <a href="{% url 'dashboard' %}">我的儀表版</a>
                 </li>
                 <li {% if section == "images" %} class="selected" {% endif %}>
-                    <a href="#">圖片</a>
+                    <a href="{% url 'images:list' %}">圖片</a>
                 </li>
                 <li {% if section == "people" %} class="selected" {% endif %}>
-                    <a href="#">人們</a>
+                    <a href="{% url 'user_list' %}">人們</a>
                 </li>
             </ul>
         {% endif %}
