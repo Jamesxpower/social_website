@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.http import require_POST
+from actions.utils import create_action
 from .forms import ImageCreateForm
 from .models import Image
 
@@ -19,6 +20,7 @@ def image_create(request):
             new_image.user = request.user
             new_image.save()
 
+            create_action(request.user, 'bookmarked imaged', new_image)
             messages.success(request=request, message='照片存檔成功')
 
             # redirect to new created item detail view
@@ -49,6 +51,7 @@ def image_like(request):
             image = Image.objects.get(id=image_id)
             if action == "like":
                 image.users_like.add(request.user)
+                create_action(request.user, 'likes', image)
             else:
                 image.users_like.remove(request.user)
 
