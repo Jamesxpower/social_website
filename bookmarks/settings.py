@@ -168,3 +168,7 @@ RUNSERVERPLUS_SERVER_ADDRESS_PORT = '0.0.0.0:8000'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
 }
+
+REDIS_HOST = '192.168.1.120'
+REDIS_PORT = 6379
+REDIS_DB = 0
