@@ -34,7 +34,7 @@ def user_login(request):
 @login_required
 def dashboard(reuest):
     # Display all actions by default
-    actions = Action.objects.excelude(user=reuest.user)
+    actions = Action.objects.exclude(user=reuest.user)
     following_ids = reuest.user.following.values_list('id', flat=True)
 
     if following_ids:

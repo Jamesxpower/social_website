@@ -11,4 +11,10 @@
         <a href="javascript:{% include 'bookmarklet_launcher.js' %}" class="button">標誌</a></p>
     <p>您可以<a href="{% url 'edit' %}">編輯</a>您的個人資訊，
         或是<a href="{% url 'password_change' %}">變更</a>您的密碼</p>
+    <h2>目前正在發生的事</h2>
+    <div id="action-list">
+        {% for action in actions %}
+            {% include 'actions/action/detail.html' %}
+        {% endfor %}
+    </div>
 {% endblock %}
