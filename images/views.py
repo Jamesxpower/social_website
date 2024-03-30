@@ -53,6 +53,7 @@ def image_detail(request, id, slug):
                            'image': image,
                            'total_views': total_views})
 
+
 @login_required
 @require_POST
 def image_like(request):
