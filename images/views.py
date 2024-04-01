@@ -48,6 +48,9 @@ def image_detail(request, id, slug):
     # increment total image views by 1
     total_views = r.incr(f'image:{image.id}:views')
 
+    # increment image ranking by 1
+    r.zincrby('image_banking', 1, image.id)
+
     return render(request=request, template_name='images/image/detail.html',
                   context={'section': 'images',
                            'image': image,
@@ -103,3 +106,19 @@ def image_list(request):
     return render(request=request,
                   template_name="images/image/list.html",
                   context={"section": "images", "images": images})
+
+@login_required
+def image_ranking(request):
+    # get image ranking dictionary
+    image_ranking = r.zrange('image_ranking',0, -1, desc=True)[:10]
+
+    iamge_ranking_ids = [int(id) for id in image_ranking]
+    # get most viewed images
+    most_viewed = list(Image.objects.filter(id__in=iamge_ranking_ids))
+    most_viewed.sort(key=lambda x: iamge_ranking_ids.index(x.id))
+
+    return render(request=request, template_name="images/image/ranking.html",
+                  context={'section': 'images',
+                           'most_viewed': most_viewed})
+
+
